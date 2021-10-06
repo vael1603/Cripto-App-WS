@@ -20,7 +20,6 @@ public class LoginWSServiceImpl implements LoginWSService {
 		try {
 				interpretado = loginDAO.loginUser(logindto);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return interpretado;

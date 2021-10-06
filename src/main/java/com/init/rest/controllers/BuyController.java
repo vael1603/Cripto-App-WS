@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.init.rest.bean.LoginBean;
-import com.init.rest.dtos.LoginDTO;
-import com.init.rest.services.ws.LoginWSService;
+import com.init.rest.bean.BuyBean;
+import com.init.rest.dtos.BuyDTO;
+import com.init.rest.services.ws.BuyWSService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/")
-public class LoginController {
+public class BuyController {
 
 	@Autowired
-	private LoginWSService loginWSService;
+	private BuyWSService buyWSService;
 	
 	@ResponseBody
-	@RequestMapping(value="login", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public LoginBean login(@RequestBody LoginDTO loginDTO) throws Exception {
-		LoginBean loginBean = loginWSService.loginUser(loginDTO);
-		return loginBean;
+	@RequestMapping(value="buy", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public BuyBean login(@RequestBody BuyDTO buyDTO) throws Exception {
+		BuyBean buyBean = buyWSService.bought(buyDTO);
+		return buyBean;
 	}
 
 }

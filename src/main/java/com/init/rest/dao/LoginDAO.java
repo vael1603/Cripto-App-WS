@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import com.init.rest.bean.LoginBean;
 import com.init.rest.dtos.LoginDTO;
+import com.init.rest.dtos.LoginResponseDTO;
 
 @Repository("LoginDAO")
 public class LoginDAO {
 	
 	private static Log log = LogFactory.getLog(LoginDAO.class);
 	
-	public List<LoginDTO> usersData = new ArrayList<LoginDTO>();
+	public List<LoginResponseDTO> usersData = new ArrayList<LoginResponseDTO>();
 
 	public LoginBean loginUser(LoginDTO loginDTO) throws Exception {
 		
@@ -40,17 +41,23 @@ public class LoginDAO {
 				loginBean.setUser(user);
 				loginBean.setCorrectPassword(true);
 				loginBean.setFoundUser(true);
+				loginBean.setName(usersData.get(i).getName());
+				loginBean.setLastName(usersData.get(i).getLastName());
 			} else {
 				loginBean.setLogged(false);
 				loginBean.setUser(user);
 				loginBean.setCorrectPassword(false);
 				loginBean.setFoundUser(true);
+				loginBean.setName("");
+				loginBean.setLastName("");
 			}
 		} else {
 			loginBean.setLogged(false);
 			loginBean.setUser("Not Found");
 			loginBean.setCorrectPassword(false);
 			loginBean.setFoundUser(false);
+			loginBean.setName("");
+			loginBean.setLastName("");
 			
 		}
 		
@@ -59,19 +66,12 @@ public class LoginDAO {
 	
 	public void dataBase() throws Exception {
 
-		log.info("*********************************************************");
-		usersData.add(new LoginDTO("evalenzuela", "Contraseña"));
-		usersData.add(new LoginDTO("juan", "123456"));
-		usersData.add(new LoginDTO("pedro", "Qwerty"));
-		usersData.add(new LoginDTO("jazmin", "123456"));
-		usersData.add(new LoginDTO("maria", "Contraseña"));
-		List<String> lista = new ArrayList<String>();
+		usersData.add(new LoginResponseDTO("evalenzuela", "Contraseña", "Elias", "Valenzuela"));
+		usersData.add(new LoginResponseDTO("juan", "123456", "Juan", "Flores"));
+		usersData.add(new LoginResponseDTO("pedro", "Qwerty", "Pedro", "jimenez"));
+		usersData.add(new LoginResponseDTO("jazmin", "123456", "Jazmin", "Salazar"));
+		usersData.add(new LoginResponseDTO("maria", "Contraseña", "Maria", "Felquer"));
 		
-		lista.add("evalenzuela");
-		lista.add("evalenzue");
-		lista.add("evalena");
-		
-		log.info(lista.contains("evalenzuela"));
 	}
 		
 }
